@@ -7,7 +7,7 @@ public static void main (String[] args) {
         System.out.println(builder.toString());
         
         //Another way
-        String reversedString = "";
+        String reversedString = ""; // here it is efficient to use StringBuilder because if we use String it will create new instance everytime on change
         for(int i=s.length()-1; i>=0; i--) {
             reversedString += s.charAt(i);
         }
