@@ -1,0 +1,29 @@
+public static void main (String[] args) {
+    int num = 54321;
+    int size = String.valueOf(num).length();
+    String reveredInteger = "";
+    for(int i=0; i<size; i++) {
+        reveredInteger += String.valueOf(num%10);
+        num = num/10;
+    }
+
+    System.out.println(Integer.parseInt(reveredInteger));
+}
+
+// when the interviewer says you shouldnot use String in this logic 👍
+// Efficient
+public static void main (String[] args) {
+    int num = 7896;
+    int reversedInteger = 0;
+
+    while(num != 0) {
+        reversedInteger = reversedInteger * 10 + num%10;
+        num = num/10;
+    }
+
+    if(reversedInteger > Integer.MAX_VALUE || reversedInteger < Integer.MIN_VALUE) {
+        System.out.println(0);
+    }
+
+    System.out.println(reversedInteger);
+}
