@@ -1,0 +1,19 @@
+public static void main (String[] args) {
+        //1 = I, 5 = V, 10 = X, 50 = L, 100 = C, 500 = D, 1000 = M
+        //1=I, 2=II, 3=III, BUT 4 = "I" SUBTRACTED-IN "V" (IV)
+        //SIMILARLY 40 = XL, 90 = XC, 400 = CD, 900 = CM
+        
+        //SO IF THE INTEGER IS 49 = ROMAN IS XLIX
+        //INTEGER IS 624 = ROMAN IS DCXXIV
+        //INTEGER IS 2999 = INTEGER IS MMCMXCIX
+        //NOTE : 0'S ARE NOT AVAILABLE IN ROMAN
+        
+        int num = 3419;
+        
+        String[] nums = {"", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX"};
+        String[] tens = {"", "X", "XX", "XXX", "XL", "L", "LX", "LXX", "LXXX", "XC"};
+        String[] hundreds = {"", "C", "CC", "CCC", "CD", "D", "DC", "DCC", "DCCC", "CM"};
+        String[] uptoThreeThousands = {"", "M", "MM", "MMM"};
+        
+        System.out.println(uptoThreeThousands[num/1000] + hundreds[(num%1000)/100] + tens[(num%100)/10] + nums[num%10]);
+    }
