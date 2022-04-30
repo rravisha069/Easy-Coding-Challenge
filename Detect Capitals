@@ -1,0 +1,41 @@
+public class Main
+{
+    public static void main (String[] args) {
+        String s = "Adfdfd";
+        
+        //One method - count uppercase in the string and check if count == strlength,
+        //count == 0, count == 1 and strFirstChar is upper case
+            int upperCaseCount = 0;
+            for(int i=0; i<s.length(); i++) {
+                if(Character.isUpperCase(s.charAt(i))) {
+                    upperCaseCount++;
+                }
+            }
+            
+            if(upperCaseCount == s.length() || upperCaseCount == 0 || (upperCaseCount == 1 && Character.isUpperCase(s.charAt(0)))) {
+                System.out.println("true");
+            } else {
+                System.out.println("false");
+            }
+            
+        //Second Method (bit faster)
+                System.out.println(new Main().secondWay(s));
+    }
+    
+    public boolean secondWay(String s) {
+        if(Character.isUpperCase(s.charAt(0)) && Character.isUpperCase(s.charAt(1))) {
+                for(int i=2; i<s.length(); i++) {
+                    if(Character.isLowerCase(s.charAt(i))) {
+                        return false;
+                    }
+                }
+            } else {
+                for(int i=1; i<s.length(); i++) {
+                    if(Character.isUpperCase(s.charAt(i))) {
+                        return false;
+                    }
+                }
+            }
+            return true;
+    }
+}
