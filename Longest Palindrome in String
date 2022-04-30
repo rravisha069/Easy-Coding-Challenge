@@ -1,0 +1,31 @@
+public class Main {
+    static int resultLength;
+    static int resultStart;
+
+    public static void main(String[] args) {
+        System.out.println(Main.palindromeCheck("abbacabbba"));
+    }
+
+    public static String palindromeCheck(String s) {
+        if(s.length() < 2) {
+            return s;
+        }
+
+        for(int i=0; i<s.length(); i++) {
+            expandRange(s, i, i);
+            expandRange(s, i, i+1);
+        }
+        return s.substring(resultStart, resultStart + resultLength);
+    }
+
+    public static void expandRange(String s, int begin, int end) {
+        while(begin >= 0 && end < s.length() && s.charAt(begin) == s.charAt(end)) {
+            begin--;
+            end++;
+        }
+
+        if(resultLength < end-begin-1) {
+            resultStart = begin+1;
+            resultLength = end-begin-1;
+        }
+    }
