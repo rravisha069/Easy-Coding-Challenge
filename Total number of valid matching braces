@@ -1,0 +1,23 @@
+public class Main
+{
+	public static void main(String[] args) {
+	    String s = "}{mjkjkkjk}}{kk}s}d{dsd}dsd}{";
+	    int openBracesCount = 0;
+	    int bracesCount = 0;
+	    
+	    for(int i=0; i<s.length(); i++) {
+	        if(s.charAt(i)=='{') {
+	            openBracesCount += 1;
+	        } else if(s.charAt(i)=='}' && openBracesCount >= 1) {
+	            bracesCount += 1;
+	            openBracesCount -= 1;
+	        }
+	    }
+	    
+	   System.out.println(bracesCount);
+	}
+}
+
+
+//"}{mjkjkkjk}}{kk}s}d{dsd}dsd}{" => output : 3
+//"{a{sds}dsd}" => output: 2
