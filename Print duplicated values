@@ -1,0 +1,56 @@
+public class Main {
+    public static void main(String[] args) {
+        int[] arr = {1, 2, 3, 1, 1, 2, 5, 5, 4};
+
+        // return the duplicates which comes in an array more than once
+        // 1) using list
+        List<Integer> normalList = new ArrayList<>();
+        List<Integer> duplicatedList = new ArrayList<>();
+        for(int i=0; i<arr.length; i++) {
+            if(normalList.contains(arr[i])) {
+                if(!duplicatedList.contains(arr[i])) {
+                    duplicatedList.add(arr[i]);
+                }
+            } else {
+                normalList.add(arr[i]);
+            }
+        }
+        //Collectors.joining uses only with string map the value of int to string
+        String s = duplicatedList.stream().map(String::valueOf).collect(Collectors.joining(", "));
+        System.out.println(s);
+
+
+        //============================================================================
+        // 2) Using map
+        Map<Integer, Integer> frequencyMap = new HashMap<>();
+
+        for(int i = 0; i<arr.length; i++) {
+            if(frequencyMap.containsKey(arr[i])) {
+                frequencyMap.put(arr[i], frequencyMap.get(arr[i]) + 1);
+            } else {
+                frequencyMap.put(arr[i], 1);
+            }
+        }
+
+//        for(Integer i: frequencyMap.keySet()) {
+//            if(frequencyMap.get(i) > 1) {
+//                System.out.println(i);
+//            }
+//        }
+        frequencyMap.entrySet().stream().filter(individualNum -> individualNum.getValue() > 1).forEach(
+                duplicatedNum -> System.out.println(duplicatedNum.getKey())
+        );
+
+
+        //==========================================================================
+        // 3) Using only Stream
+        int[] arr2 = {1, 2, 3, 1, 1, 2, 5, 5, 4};
+        List<Integer> arrToList = new ArrayList<>(arr2.length);
+        for(int i: arr2) {
+            arrToList.add(i);
+        }
+
+        arrToList.stream().filter(individualNum -> Collections.frequency(arrToList, individualNum) > 1)
+                .distinct().forEach(System.out::print);
+    }
+}
